@@ -1,0 +1,76 @@
+/* General container styling */
+.Signcontainer {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 10px 40px 10px 40px ;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid gray;
+    margin-top: 30px;
+}
+
+/* Heading */
+.Signcontainer h2 {
+    font-size: 26px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Form styling */
+.form-group2 {
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+.form-group2 input
+{
+    width: 95%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Button styling */
+/* Input fields */
+.form-group2 button {
+    width: 95%;
+    padding: 12px;
+    background-color:#181495;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    
+    transition: background-color 0.3s;
+}
+
+/* Input fields */
+.form-group2 button:hover {
+    background-color: #6da4df;
+}
+
+/* Focused inputs */
+/* Input fields */
+.from-group2 input:hover {
+    border-color: #2768af;
+    outline: none;
+}
+
+/* Add some spacing for mobile */
+@media (max-width: 480px) {
+    .Signcontainer {
+        padding: 20px;
+    }
+
+    /* Input fields */
+    .form-group2 input,
+    input[type="email"],
+    input[type="password"] {
+        font-size: 14px;
+    }
+}

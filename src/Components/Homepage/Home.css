@@ -1,0 +1,269 @@
+/* General App Styles */
+.App {
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  .Container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 3px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Upper Section Styles */
+  .Upper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+  
+  .heading {
+    width: 100%;
+    background-color: #140fa2;
+    padding: 8px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .Content {
+    width: 70%;
+    padding: 20px;
+  }
+  
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+  
+  .input1 {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .input1 label {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .input1 input {
+    width: 77%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+  
+  .button {
+    text-align: center;
+  }
+  
+  .button button {
+    background-color: #140fa2;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .button button:hover {
+    background-color: #09074a;
+  }
+  
+  .lower {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #f8f4f4;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    background-color: white;
+  }
+  
+  .expense-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .expense-table th, .expense-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .expense-table th {
+    background-color: #140fa2;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .expense-table td {
+    background-color:#f9f9f9;
+    text-align: start;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .edit-icon, .delete-icon {
+    cursor: pointer;
+    margin: 0 5px;
+    color: #181495;
+    transition: color 0.3s ease;
+  }
+  
+  .edit-icon:hover, .delete-icon:hover {
+    color: #7c79d1;
+    font-size: 21px;
+  }
+  
+  .edit-icon, .delete-icon {
+    font-size: 20px;
+  }
+  
+  .topic {
+    width: 15%;
+    margin: 0;
+  }
+  
+  .description{
+    width: 60%;
+    margin: 0;
+  }
+  
+  .amount td{
+    width: 15%;  
+  }
+  
+  .edit {
+    width: 10%;
+    margin: 0;
+    text-align: center;
+  }
+  
+  
+  
+  @media (min-width: 322px) and (max-width: 768px) {
+    .container{
+      background-color: #7c79d1;
+    }
+    .inputs {
+      flex-direction: column;
+    }
+  
+    .input1 {
+      width: 90%;
+      flex-direction: column;
+    }
+  
+    .input1 label {
+      margin-bottom: 5px;
+    }
+  
+    .input1 input {
+      width: 90%;
+    }
+  
+    .button button {
+      width: 100%;
+      font-size: 16px;
+      padding: 12px;
+    }
+  
+    .heading {
+      font-size: 18px;
+    }
+  
+    .expense-table th, .expense-table td {
+      padding: 8px;
+      text-align: start;
+    }
+  
+    .edit-icon, .delete-icon {
+      font-size: 16px;
+    }
+  
+    .topic {
+      width: 15%;
+      margin: 0;
+    }
+    
+    .description {
+      width: 60%;
+      margin: 0;
+      text-align:start;
+    }
+    
+    .amount {
+      width: 15%;
+      margin: 0;
+      text-align:center; 
+    }
+    
+    .edit {
+      width: 10%;
+      margin: 0;
+      text-align: center;
+    }
+  
+  }
+  
+  @media (max-width: 321px) {
+    .Container {
+      margin: 10px;
+      padding: 10px;  
+    }
+    
+    .heading {
+      font-size: 16px;
+    }
+  
+    .inputs{
+      padding:5px;
+    }
+  
+    .input1 {
+      padding: 2px;
+      width:98%;  
+    }
+  
+    .input1 input{
+      width: 90%;
+    }
+  
+    .button button {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .expense-table th, .expense-table td {
+      font-size: 12px;
+      padding: 6px;
+    }
+  
+    .edit-icon, .delete-icon {
+      font-size: 14px;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
