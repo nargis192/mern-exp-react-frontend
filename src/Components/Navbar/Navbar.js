@@ -4,7 +4,7 @@ import '../Navbar/Navbar.css';
 import logo from '../image/logo6.png';
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = ({ isloggedin, setloggedin }) => {
+const Navbar = ({ isloggedin, setloggedin , userId}) => {
   const navigate = useNavigate();
 
   return (
@@ -23,6 +23,7 @@ const Navbar = ({ isloggedin, setloggedin }) => {
               onClick={() => {
                 setloggedin(false);
                 localStorage.removeItem('isloggedin'); 
+                localStorage.removeItem('userId');
                 navigate("/");
               }}
             >

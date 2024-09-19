@@ -4,7 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { NavLink, useNavigate} from 'react-router-dom';
 
-const Login = ({isloggedin, setloggedin}) => {
+const Login = ({isloggedin, setloggedin , setuserId}) => {
     const [Email, setEmail] = useState("")
     const [Password, setPassword] = useState("")
     const Navigate = useNavigate()
@@ -37,30 +37,48 @@ const Login = ({isloggedin, setloggedin}) => {
     //     }
     // }
 
-    const Loginhandle = async (e) => {
-        e.preventDefault();  // Prevent form default submission
+    // const Loginhandle = async (e) => {
+    //     e.preventDefault();  // Prevent form default submission
     
-        // Check if passwords match
-        try {
-          const res = await axios.post("http://localhost:5555/api/users/login", {
-            Email,
-            Password,
-           });
-          console.log(res.data);
+    //     // Check if passwords match
+    //     try {
+    //       const res = await axios.post("http://localhost:5555/api/users/login", {
+    //         Email,
+    //         Password,
+    //        });
+    //       console.log(res.data);
           
-          setEmail("")
-          setPassword("")
-          setloggedin(true); 
+    //       setEmail("")
+    //       setPassword("")
+    //       setloggedin(true); 
           
-          Navigate("/home")
+    //       Navigate("/home")
       
     
+    //     } catch (err) {
+    //       console.error("Error during login:", err);
+         
+    //     }
+    //   };
+
+    const Loginhandle = async (e) => {
+        e.preventDefault();
+        try {
+          const res = await axios.post("http://localhost:5555/api/users/login", { Email, Password });
+          setEmail("");
+          setPassword("");
+          setloggedin(true);
+      
+          // Store the userId in both state and localStorage
+          setuserId(res.data.userId);
+          localStorage.setItem("userId", res.data.userId);
+      
+          Navigate("/home");
         } catch (err) {
           console.error("Error during login:", err);
-         
         }
       };
-
+      
     return (
         <div className='Logcontainer'>
             <form onSubmit={Loginhandle} >

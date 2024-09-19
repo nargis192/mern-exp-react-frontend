@@ -6,7 +6,8 @@ import Home from './Components/Homepage/Home';
 import Navbar from './Components/Navbar/Navbar';
 
 const App = () => {
-  // const [userId, setuserId] = useState(localStorage.getItem("userId") || null)
+  const [userId, setuserId] = useState(localStorage.getItem("userId") || null);
+
   // const [isloggedin, setloggedin] = useState(!!userId)
 
   // useEffect(()=>{
@@ -42,11 +43,11 @@ const App = () => {
   return (
     <div className='App'>
       <BrowserRouter>
-        <Navbar isloggedin={isloggedin} setloggedin={setloggedin} />
+        <Navbar isloggedin={isloggedin} setloggedin={setloggedin} setuserId={setuserId} />
         <Routes>
           {/* Public Routes */}
           <Route path="/" 
-                 element={!isloggedin ? <Login isloggedin={isloggedin} setloggedin={setloggedin} /> /* passing props */: <Navigate to="/home" />} />
+                 element={!isloggedin ? <Login isloggedin={isloggedin} setloggedin={setloggedin} setuserId={setuserId}/> /* passing props */: <Navigate to="/home" />} />
           <Route path="/signup" 
                  element={!isloggedin ? <Signup /> : <Navigate to="/home" />} />
 
@@ -54,7 +55,7 @@ const App = () => {
           <Route
             path="/home"
             element={
-              isloggedin ?  <Home/> : <Navigate to="/" />
+              isloggedin ?  < Home userId={userId}/> : <Navigate to="/" />
             }
           />
         </Routes>

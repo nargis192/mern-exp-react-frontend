@@ -5,33 +5,57 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import "../Homepage/Home.css";
 
-const Home = (userId) => {
+const Home = ({ userId }) => {
 
   const [topic, setTopic] = useState("");
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [data, setData] = useState([]);
   const [expid, setExpid] = useState(null); // Initialize expid as null
+  const [isLoading, setIsLoading] = useState(false);
+
+
+  // const userId = localStorage.getItem('userId');
+
+  useEffect(() => {
+    const getExpenses = async () => {
+      if (!userId) return; // Early return if userId is not set
+      try {
+        const res = await axios.get(`http://localhost:5555/api/${userId}`);
+        setData(res.data);
+      } catch (error) {
+        console.error("Error fetching expenses:", error);
+      }
+      finally {
+        setIsLoading(false);
+      }
+    };
+  
+    getExpenses();
+  }, [userId]); // userId is the only dependency
+  
+
+ 
 
   // Fetch all expenses from the backend
-  const getData = async () => {
+  // const getData = async () => {
     
-      try {
+  //     try {
       
-        const res = await axios.get(`https://mern-exp-app.onrender.com`);
-        setData(res.data);
-        console.log(res.data)
-      } catch (error) {
-        console.error("Error while getting expenses:", error);
+  //       const res = await axios.get(`http://localhost:5555/api/`);
+  //       setData(res.data);
+  //       console.log(res.data)
+  //     } catch (error) {
+  //       console.error("Error while getting expenses:", error);
       
-    }
+  //   }
    
-  }
+  // }
 
   // Add a new expense
   const add = async () => {
     try {
-      const res = await axios.post("https://mern-exp-app.onrender.com/save", { topic, description, amount });
+      const res = await axios.post("http://localhost:5555/api/save", {userid:(userId), topic, description, amount });
       if (res.status === 201) {
         setData([...data, res.data]);
         setTopic("");
@@ -46,11 +70,45 @@ const Home = (userId) => {
     }
   };
 
+  // const add = async () => {
+    
+  //   try {
+  //     const response = await axios.post("http://localhost:5555/api/save", {
+  //       topic,
+  //       description,
+  //       amount,
+  //       userid:(userId)
+  //     });
+  //     //  console.log(userid);
+  //     if (response.status === 201) {
+  //       setData(prevData => [...prevData, response.data]);
+  //       setTopic("");
+  //       setDescription("");
+  //       setAmount("");
+  //       alert("Expense added successfully");
+  //     } else {
+  //       alert(`Error adding expense: ${response.statusText}`);
+  //     }
+  //   } catch (error) {
+  //     if (error.response) {
+  //       // Handle server errors (5xx, 4xx)
+  //       alert(`Error ${error.response.status}: ${error.response.data.message}`);
+  //     } else if (error.request) {
+  //       // Handle network errors (no response)
+  //       alert("Network error. Please try again.");
+  //     } else {
+  //       // Handle other errors (e.g., Axios configuration)
+  //       alert("Error adding expense. Please try again.");
+  //     }
+  //     console.error("Error adding expense:", error);
+  //   }
+  // };
+
   // Update an existing expense
   const update = async () => {
     try {
       // Make a request to update the expense in the backend
-      await axios.post("https://mern-exp-app.onrender.com/update", { _id: expid, topic, description, amount });
+      await axios.post("http://localhost:5555/api/update", { _id: expid, topic, description, amount });
 
       // Update the data array by replacing the updated expense in the list
       const updatedData = data.map(item =>
@@ -73,7 +131,7 @@ const Home = (userId) => {
   const deletefunc = async (expid) => {
     try {
       // Make a request to delete the expense in the backend
-      await axios.post("https://mern-exp-app.onrender.com/delete", { _id: expid });
+      await axios.post("http://localhost:5555/api/delete", { _id: expid });
 
       // Update the data array by filtering out the deleted expense from the list
       const updatedData = data.filter(item => item._id !== expid);
@@ -92,11 +150,14 @@ const Home = (userId) => {
   };
 
 
+  // useEffect(() => {
+  //     getExpenses();
+    
+  // }, [userId]);
 
-
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   return (
     <div className="App">
@@ -142,9 +203,9 @@ const Home = (userId) => {
             </div>
             <div className="button">
               {expid ? (
-                <button onClick={update}>Update Expense</button>
+                <button onClick={update} disabled={isLoading}>Update Expense</button>
               ) : (
-                <button onClick={add}>Add Expense</button>
+                <button onClick={add} disabled={isLoading}>Add Expense</button>
               )}
             </div>
           </div>
